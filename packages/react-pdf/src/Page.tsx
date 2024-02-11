@@ -1,36 +1,26 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef } from 'react';
-import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import makeCancellable from 'make-cancellable-promise';
 import makeEventProps from 'make-event-props';
-import clsx from 'clsx';
 import mergeRefs from 'merge-refs';
+import PropTypes from 'prop-types';
+import React, { useEffect, useMemo, useRef } from 'react';
 import invariant from 'tiny-invariant';
 import warning from 'warning';
 
-import PageContext from './PageContext.js';
-
 import Message from './Message.js';
+import AnnotationLayer from './Page/AnnotationLayer.js';
 import PageCanvas from './Page/PageCanvas.js';
 import PageSVG from './Page/PageSVG.js';
 import TextLayer from './Page/TextLayer.js';
-import AnnotationLayer from './Page/AnnotationLayer.js';
-
-import { cancelRunningTask, isProvided, makePageCallback } from './shared/utils.js';
-
+import PageContext from './PageContext.js';
 import useDocumentContext from './shared/hooks/useDocumentContext.js';
 import useResolver from './shared/hooks/useResolver.js';
 import {
-  eventProps,
-  isClassName,
-  isPageIndex,
-  isPageNumber,
-  isPdf,
-  isRef,
-  isRenderMode,
-  isRotate,
+    eventProps, isClassName, isPageIndex, isPageNumber, isPdf, isRef, isRenderMode, isRotate
 } from './shared/propTypes.js';
+import { cancelRunningTask, isProvided, makePageCallback } from './shared/utils.js';
 
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import type { EventProps } from 'make-event-props';
@@ -647,8 +637,8 @@ const Page: React.FC<PageProps> = function Page(props) {
         ['--scale-factor' as string]: `${scale}`,
         backgroundColor: canvasBackground || 'white',
         position: 'relative',
-        minWidth: 'min-content',
-        minHeight: 'min-content',
+        minWidth: 'fit-content',
+        minHeight: 'fit-content',
       }}
       {...eventProps}
     >

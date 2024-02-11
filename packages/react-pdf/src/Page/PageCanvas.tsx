@@ -1,20 +1,16 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import mergeRefs from 'merge-refs';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import invariant from 'tiny-invariant';
 import warning from 'warning';
+
 import pdfjs from '../pdfjs.js';
-
-import StructTree from '../StructTree.js';
-
 import usePageContext from '../shared/hooks/usePageContext.js';
 import {
-  cancelRunningTask,
-  getDevicePixelRatio,
-  isCancelException,
-  makePageCallback,
+    cancelRunningTask, getDevicePixelRatio, isCancelException, makePageCallback
 } from '../shared/utils.js';
+import StructTree from '../StructTree.js';
 
 import type { RenderParameters } from 'pdfjs-dist/types/src/display/api.js';
 
@@ -104,8 +100,8 @@ export default function PageCanvas(props: PageCanvasProps) {
     canvas.width = renderViewport.width;
     canvas.height = renderViewport.height;
 
-    canvas.style.width = `${Math.floor(viewport.width)}px`;
-    canvas.style.height = `${Math.floor(viewport.height)}px`;
+    canvas.style.width = `${Math.floor(viewport.width)}pt`;
+    canvas.style.height = `${Math.floor(viewport.height)}pt`;
     canvas.style.visibility = 'hidden';
 
     const renderContext: RenderParameters = {
